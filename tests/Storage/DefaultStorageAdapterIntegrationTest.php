@@ -179,7 +179,13 @@ final class DefaultStorageAdapterIntegrationTest extends TestCase
             self::assertSame('LLP Demo', $updatedById->payload['org_name'] ?? null);
 
             $countRow = $database->fetchOne(
-                'SELECT COUNT(*) AS cnt FROM requisites_records WHERE subject_type = :subject_type AND subject_id = :subject_id AND profile = :profile',
+                '
+                    SELECT COUNT(*) AS cnt
+                    FROM requisites_records
+                    WHERE subject_type = :subject_type
+                        AND subject_id = :subject_id
+                        AND profile = :profile
+                ',
                 [
                     'subject_type' => 'company',
                     'subject_id'   => '101',

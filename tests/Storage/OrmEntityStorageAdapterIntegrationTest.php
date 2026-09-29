@@ -175,7 +175,13 @@ final class OrmEntityStorageAdapterIntegrationTest extends TestCase
             self::assertSame(3, $updatedById->schemaVersion);
 
             $countRow = $database->fetchOne(
-                'SELECT COUNT(*) AS cnt FROM company_requisites WHERE subject_type = :subject_type AND subject_id = :subject_id AND profile = :profile',
+                '
+                    SELECT COUNT(*) AS cnt
+                    FROM company_requisites
+                    WHERE subject_type = :subject_type
+                        AND subject_id = :subject_id
+                        AND profile = :profile
+                ',
                 [
                     'subject_type' => 'company',
                     'subject_id'   => '401',
@@ -186,7 +192,14 @@ final class OrmEntityStorageAdapterIntegrationTest extends TestCase
             self::assertSame(1, (int) ($countRow['cnt'] ?? 0));
 
             $selectorRow = $database->fetchOne(
-                'SELECT country_code FROM company_requisites WHERE subject_type = :subject_type AND subject_id = :subject_id AND profile = :profile LIMIT 1',
+                '
+                    SELECT country_code
+                    FROM company_requisites
+                    WHERE subject_type = :subject_type
+                        AND subject_id = :subject_id
+                        AND profile = :profile
+                    LIMIT 1
+                ',
                 [
                     'subject_type' => 'company',
                     'subject_id'   => '401',

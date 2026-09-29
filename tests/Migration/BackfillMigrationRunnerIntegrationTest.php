@@ -275,7 +275,14 @@ final class BackfillMigrationRunnerIntegrationTest extends TestCase
     private static function schemaVersionBySubject(Database $database, int $subjectId): int
     {
         $row = $database->fetchOne(
-            'SELECT schema_version FROM requisites_records WHERE subject_type = :subject_type AND subject_id = :subject_id AND profile = :profile LIMIT 1',
+            '
+                SELECT schema_version
+                FROM requisites_records
+                WHERE subject_type = :subject_type
+                    AND subject_id = :subject_id
+                    AND profile = :profile
+                LIMIT 1
+            ',
             [
                 'subject_type' => 'company',
                 'subject_id'   => (string) $subjectId,
@@ -294,7 +301,14 @@ final class BackfillMigrationRunnerIntegrationTest extends TestCase
     private static function payloadStepsBySubject(Database $database, int $subjectId): array
     {
         $row = $database->fetchOne(
-            'SELECT payload_json FROM requisites_records WHERE subject_type = :subject_type AND subject_id = :subject_id AND profile = :profile LIMIT 1',
+            '
+                SELECT payload_json
+                FROM requisites_records
+                WHERE subject_type = :subject_type
+                    AND subject_id = :subject_id
+                    AND profile = :profile
+                LIMIT 1
+            ',
             [
                 'subject_type' => 'company',
                 'subject_id'   => (string) $subjectId,

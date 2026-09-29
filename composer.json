@@ -14,6 +14,7 @@
     },
     "require": {
         "php": "^8.5",
+        "phpsoftbox/collection": "dev-master",
         "phpsoftbox/data-casting": "dev-master",
         "phpsoftbox/database": "dev-master",
         "phpsoftbox/filter": "dev-master",
@@ -25,6 +26,9 @@
         "phpsoftbox/cli-app": "dev-master",
         "phpsoftbox/cs-fixer": "^1.2.1",
         "phpunit/phpunit": "^13.3"
+    },
+    "suggest": {
+        "phpsoftbox/cli-app": "Required for the requisites:migrate command (RequisitesCommandProvider)."
     },
     "autoload": {
         "psr-4": {

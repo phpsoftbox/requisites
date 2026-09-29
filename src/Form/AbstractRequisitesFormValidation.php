@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace PhpSoftBox\Requisites\Form;
 
+use Closure;
 use PhpSoftBox\Collection\Collection;
 use PhpSoftBox\Validator\AbstractFormValidation;
 use PhpSoftBox\Validator\Exception\ValidationException;
@@ -70,7 +71,9 @@ abstract class AbstractRequisitesFormValidation extends AbstractFormValidation
     }
 
     /**
-     * @param array<string, callable(mixed): mixed|list<callable(mixed): mixed>> $filters
+     * Фильтр — Closure или invokable-объект (`FilterInterface`), как в фильтрах payload Validator.
+     *
+     * @param array<string, (Closure(mixed): mixed)|object|list<(Closure(mixed): mixed)|object>> $filters
      */
     protected function applyFilters(array $filters): void
     {

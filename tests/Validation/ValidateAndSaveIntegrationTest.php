@@ -81,8 +81,7 @@ final class ValidateAndSaveIntegrationTest extends TestCase
         $adapter   = new DefaultStorageAdapter($database->manager());
         $validator = new class (new Validator()) implements RequisitesValidatorInterface {
             public function __construct(
-                private readonly Validator
-            $validator,
+                private readonly Validator $validator,
             ) {
             }
 

@@ -94,8 +94,7 @@ final class RegistryValidForm implements FormValidationInterface
 {
     /** @param array<string, mixed> $payload */
     public function __construct(
-        private readonly array
-    $payload,
+        private readonly array $payload,
     ) {
     }
 

@@ -94,9 +94,17 @@ php psb requisites:migrate \
 - `CompanyRequisitesByFormValidation`;
 - `CompanyRequisitesAmFormValidation`;
 - `CompanyRequisitesAzFormValidation`;
-- `CompanyRequisitesGenericFormValidation`.
+- `CompanyRequisitesGenericFormValidation`;
+- `CompanyRequisitesInternationalFormValidation` — международная схема: английские значения в общих ключах
+  (`organization_name`, `organization_address`, регистрационный номер — `organization_inn`), значения на родном
+  языке — `*_local`, представитель (`representative_name`), режим НДС (`VatModesEnum`), банк и SWIFT — по желанию;
+- `CompanyRequisitesCnFormValidation` — Китай: международная схема и регистрационный номер USCC с проверкой
+  контрольного символа (`UsccChecksumValidation`).
 
 Form validation classes находятся в `PhpSoftBox\Requisites\Validation\Form\Company`.
+
+Телефоны стран справочника — `PhoneCountryCatalog`: `toInternational()` (E.164, `+79991234567`),
+`countryCodeByPhone()` и `format()` по маске страны.
 
 Страновые rules находятся в:
 

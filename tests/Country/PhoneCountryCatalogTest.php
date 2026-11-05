@@ -7,10 +7,14 @@ namespace PhpSoftBox\Requisites\Tests\Country;
 use PhpSoftBox\Filter\Phone\Drivers\PhoneDriverEnum;
 use PhpSoftBox\Requisites\Country\PhoneCountryCatalog;
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\CoversMethod;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
 #[CoversClass(PhoneCountryCatalog::class)]
+#[CoversMethod(PhoneCountryCatalog::class, 'toInternational')]
+#[CoversMethod(PhoneCountryCatalog::class, 'countryCodeByPhone')]
+#[CoversMethod(PhoneCountryCatalog::class, 'format')]
 final class PhoneCountryCatalogTest extends TestCase
 {
     #[Test]
@@ -38,5 +42,43 @@ final class PhoneCountryCatalogTest extends TestCase
         self::assertSame('7010000002', PhoneCountryCatalog::normalizeAnyPhone('+7 (701) 000-00-02'));
         self::assertSame('9991112233', PhoneCountryCatalog::normalizeAnyPhone('+7 (999) 111-22-33'));
         self::assertNull(PhoneCountryCatalog::normalizeAnyPhone('invalid-phone'));
+    }
+
+    /**
+     * Проверим, что номер приводится к E.164 по выбранной стране, а номер с кодом — по коду.
+     *
+     * @see PhoneCountryCatalog::toInternational()
+     */
+    #[Test]
+    public function toInternationalReturnsE164(): void
+    {
+        self::assertSame(
+            ['+79991112233', '+8613812345678', '+375291234567'],
+            [
+                PhoneCountryCatalog::toInternational('RU', '8 (999) 111-22-33'),
+                PhoneCountryCatalog::toInternational('CN', '138 1234 5678'),
+                PhoneCountryCatalog::toInternational('RU', '+375 (29) 123-45-67'),
+            ],
+        );
+    }
+
+    /**
+     * Проверим, что страна определяется по сохранённому номеру, а номер выводится по маске страны.
+     *
+     * @see PhoneCountryCatalog::countryCodeByPhone()
+     * @see PhoneCountryCatalog::format()
+     */
+    #[Test]
+    public function countryAndFormatAreResolvedFromStoredPhone(): void
+    {
+        self::assertSame(
+            ['KZ', 'CN', '+86 138 1234 5678', null],
+            [
+                PhoneCountryCatalog::countryCodeByPhone('+77010000002'),
+                PhoneCountryCatalog::countryCodeByPhone('+8613812345678'),
+                PhoneCountryCatalog::format('+8613812345678'),
+                PhoneCountryCatalog::format('invalid-phone'),
+            ],
+        );
     }
 }

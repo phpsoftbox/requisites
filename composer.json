@@ -17,7 +17,7 @@
         "phpsoftbox/collection": "^1.0",
         "phpsoftbox/data-casting": "^1.0",
         "phpsoftbox/database": "^1.0",
-        "phpsoftbox/filter": "^1.0",
+        "phpsoftbox/filter": "^1.1",
         "phpsoftbox/forms": "^1.0",
         "phpsoftbox/orm": "^1.0",
         "phpsoftbox/validator": "^1.0"

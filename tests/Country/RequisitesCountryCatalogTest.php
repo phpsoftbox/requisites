@@ -15,13 +15,14 @@ final class RequisitesCountryCatalogTest extends TestCase
     #[Test]
     public function countryCodesAndOptionsAreStable(): void
     {
-        self::assertSame(['RU', 'KZ', 'AM', 'AZ', 'BY'], RequisitesCountryCatalog::countryCodes());
+        self::assertSame(['RU', 'KZ', 'AM', 'AZ', 'BY', 'CN'], RequisitesCountryCatalog::countryCodes());
         self::assertSame([
             ['value' => 'RU', 'label' => 'Россия'],
             ['value' => 'KZ', 'label' => 'Казахстан'],
             ['value' => 'AM', 'label' => 'Армения'],
             ['value' => 'AZ', 'label' => 'Азербайджан'],
             ['value' => 'BY', 'label' => 'Беларусь'],
+            ['value' => 'CN', 'label' => 'Китай'],
         ], RequisitesCountryCatalog::countryOptions());
     }
 

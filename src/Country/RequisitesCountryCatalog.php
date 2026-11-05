@@ -31,6 +31,9 @@ final class RequisitesCountryCatalog
         'BY' => [
             'label' => 'Беларусь',
         ],
+        'CN' => [
+            'label' => 'Китай',
+        ],
     ];
 
     /**
